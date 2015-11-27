@@ -20,15 +20,16 @@ phpmyadmin:
 laravel:
   hostname: laravel
   domainname: localdomain
-  image: smartdeveloperhub/laravel
+  build: laravel
   environment:
     - MYSQL_USER=root
     - MYSQL_PASS=secret
     - MYSQL_ADDR=mysql
     - MYSQL_PORT=3306
-    - SDH_API_HOST=http://localhost:9002
-    - LARAVEL_DB=homestead
+    - SDH_API=
+    - SDH_API_INTERNAL=
+    - DB_DATABASE=homestead
   links:
     - mysql:mysql
   ports:
-    - "9003:80"
+    - "9000:80"
