@@ -26,9 +26,9 @@ laravel:
     - MYSQL_PASS=secret
     - MYSQL_ADDR=mysql
     - MYSQL_PORT=3306
-    - SDH_API=
+    - SDH_API_HOST=
     - SDH_API_INTERNAL=
-    - DB_DATABASE=homestead
+    - LARAVEL_DB=homestead
   links:
     - mysql:mysql
   ports:
