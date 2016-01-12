@@ -1,0 +1,37 @@
+#!/bin/sh
+ 
+ROOT=$(pwd)
+SDHNAME="sdh-api"
+
+Update() {
+    cd /usr/lib
+    if [ ! -d node_modules/$1 ]
+    then
+        npm install $1
+    else
+    	npm update
+    fi
+
+    sed -i \
+        -e "s|\$SDH_API_HOST|\"$SDH_API_HOST:$SDH_API_PORT\"|g" \
+    /home/swagger.json
+
+   sed -i \
+        -e "s|\$SDH_API_URL|$SDH_API_URL|g" \
+        -e "s|\$SDH_API_DOC_PORT|$SDH_API_DOC_PORT|g" \
+        -e "s|\$SDH_LDAP_HOST|$SDH_LDAP_HOST|g" \
+        -e "s|\$SDH_LDAP_PASSWORD|$SDH_LDAP_PASSWORD|g" \
+        -e "s|\$SDH_RABBIT_HOST|$SDH_RABBIT_HOST|g" \
+        -e "s|\$SDH_RABBIT_PORT|$SDH_RABBIT_PORT|g" \
+    /home/sdhconfig
+
+    cd node_modules/$1
+    cp /home/swagger.json api/swagger.json
+    cp /home/sdhconfig sdhconfig
+
+    node index.js &
+    cd $ROOT
+}
+
+echo "> SDH API"
+Update $SDHNAME
