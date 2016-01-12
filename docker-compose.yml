@@ -17,6 +17,8 @@ sdhapi:
     - USERPROFILE=/usr/lib/node_modules/sdh-api
     - SDH_API_HOST=
     - SDH_API_PORT=
+    - SDH_API_URL=
+    - SDH_API_DOC_PORT=
     - SDH_LDAP_HOST="ldap://ldap"
     - SDH_LDAP_PASSWORD=""
     - SDH_RABBIT_HOST="amqp://"
