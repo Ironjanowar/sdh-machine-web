@@ -1,9 +1,5 @@
 #!/bin/sh
 
-if [ -z "$LARAVEL_VERSION" ]; then
-    export LARAVEL_VERSION=master
-fi
- 
 ROOT=$(pwd)
 SDHNAME="sdh-web"
 
@@ -46,7 +42,7 @@ Update() {
         Move_Laravel $1
 
     fi
-    
+
     cd $ROOT
 }
 
