@@ -6,3 +6,62 @@ ldap:
     - "9005:80"
     - "9010:389"
     - "9011:636"
+
+sdhapi:
+  build: sdhapi
+  hostname: sdhapi
+  domainname: localdomain
+  links:
+    - ldap:ldap
+  environment:
+    - USERPROFILE=/usr/lib/node_modules/sdh-api
+    - SDH_API_HOST=
+    - SDH_API_PORT=
+    - SDH_LDAP_HOST="ldap://ldap"
+    - SDH_LDAP_PASSWORD=""
+    - SDH_RABBIT_HOST="amqp://"
+    - SDH_RABBIT_PORT=5672
+    - TERM=xterm
+  ports:
+    - "9002:8080"
+
+mysql:
+  build: mysql
+  hostname: mysql
+  domainname: localdomain
+  environment:
+    - MYSQL_PASS=secret
+
+phpmyadmin:
+  hostname: phpmyadmin
+  domainname: localdomain
+  image: smartdeveloperhub/phpmyadmin
+  environment:
+    - MYSQL_USER=root
+    - MYSQL_PASS=secret
+    - MYSQL_ADDR=mysql
+    - MYSQL_PORT=3306
+  links:
+    - mysql:mysql
+  ports:
+    - 10000:80
+
+laravel:
+  hostname: laravel
+  domainname: localdomain
+  build: laravel
+  environment:
+    - LARAVEL_VERSION=develop
+    - MYSQL_USER=root
+    - MYSQL_PASS=secret
+    - MYSQL_ADDR=mysql
+    - MYSQL_PORT=3306
+    - SDH_API_HOST=http://
+    - SDH_API_INTERNAL=http://
+    - LARAVEL_DB=homestead
+  links:
+    - mysql:mysql
+    - sdhapi:sdhapi
+  ports:
+    - "9000:80"
+
