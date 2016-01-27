@@ -16,7 +16,7 @@
     "produces": [
         "application/json"
     ],
-    "host": $SDH_API_HOST,
+    "host": '$SDH_API_HOST',
     "basePath": "/",
     "schemes": [
         "http"
@@ -1131,3 +1131,4 @@
         }
     }
 }
+

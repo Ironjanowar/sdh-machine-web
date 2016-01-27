@@ -16,13 +16,11 @@ sdhapi:
   environment:
     - USERPROFILE=/usr/lib/node_modules/sdh-api
     - SDH_API_HOST=
-    - SDH_API_PORT=
-    - SDH_API_URL=
-    - SDH_API_DOC_PORT=
-    - SDH_LDAP_HOST="ldap://ldap"
-    - SDH_LDAP_PASSWORD=""
-    - SDH_RABBIT_HOST="amqp://"
-    - SDH_RABBIT_PORT=5672
+    - SDH_API_PORT=9002
+    - SDH_LDAP_HOST=
+    - SDH_LDAP_PASSWORD=
+    - SDH_RABBIT_HOST=
+    - SDH_RABBIT_PORT=
     - TERM=xterm
   ports:
     - "9002:8080"
@@ -45,21 +43,19 @@ phpmyadmin:
     - MYSQL_PORT=3306
   links:
     - mysql:mysql
-  ports:
-    - 10000:80
 
 laravel:
   hostname: laravel
   domainname: localdomain
   build: laravel
   environment:
-    - LARAVEL_VERSION=develop
+    - LARAVEL_VERSION=
     - MYSQL_USER=root
     - MYSQL_PASS=secret
     - MYSQL_ADDR=mysql
     - MYSQL_PORT=3306
-    - SDH_API_HOST=http://
-    - SDH_API_INTERNAL=http://
+    - SDH_API_HOST=
+    - SDH_API_INTERNAL=http://sdhapi:8080
     - LARAVEL_DB=homestead
   links:
     - mysql:mysql
