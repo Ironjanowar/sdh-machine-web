@@ -24,7 +24,7 @@ Update() {
         echo "Repository is not present, need to clone."
         git clone $2 $1
         cd $1
-        git checkout $LARAVEL_VERSION
+        git checkout develop
         cd ..
         rm -rf /var/www/html
         cp -R $1 /var/www/html

@@ -49,7 +49,6 @@ laravel:
   domainname: localdomain
   build: laravel
   environment:
-    - LARAVEL_VERSION=develop
     - MYSQL_USER=root
     - MYSQL_PASS=secret
     - MYSQL_ADDR=mysql
