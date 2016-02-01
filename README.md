@@ -39,6 +39,26 @@ If you want to change port redirection or configuration, we suggest you:
 3. Build (if you have changed any file or physical configuration)
 4. Start
 
-### Web - Usage:
+### Docker - Environment:
 
-To Do.
+* API Configuration
+
+|Variable|Description|Example|
+|:---------|:----------|:----------|
+|SDH_API_HOST|URL or IP address|127.0.0.1 or other|
+|SDH_API_PROTOCOL|Protocol|http or https|
+|SDH_API_PORT|Container Port|9002 or other|
+|SDH_LDAP_HOST|LDAP URL or IP addresss|ldap://...|
+|SDH_LDAP_PASSWORD|Password|user_password_test|
+|SDH_RABBIT_HOST|Rabbit URL or IP address|amqp://...|
+|SDH_RABBIT_PORT|Rabbit MQ Port|5672 or other|
+
+Note: if you change redirection container port (ports section) you need to change SDH_API_PORT.
+
+* Laravel Configuration
+
+|Variable|Description|Example|
+|:---------|:----------|:----------|
+|SDH_API_HOST|API URL or IP address|http://...:9002 or https://...:9002|
+
+Note: if you change SDH_API_PORT at API container, use the same port at laravel configuration.
