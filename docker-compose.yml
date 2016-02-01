@@ -16,6 +16,7 @@ sdhapi:
   environment:
     - USERPROFILE=/usr/lib/node_modules/sdh-api
     - SDH_API_HOST=
+    - SDH_API_PROTOCOL=http
     - SDH_API_PORT=9002
     - SDH_LDAP_HOST=
     - SDH_LDAP_PASSWORD=

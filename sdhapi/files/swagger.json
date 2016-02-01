@@ -19,7 +19,7 @@
     "host": '$SDH_API_HOST',
     "basePath": "/",
     "schemes": [
-        "http"
+        "$SDH_API_PROTOCOL"
     ],
     "tags": [
         {
