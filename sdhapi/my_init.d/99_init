@@ -18,7 +18,6 @@ Update() {
     /home/swagger.json
 
    sed -i \
-        -e "s|\$SDH_API_PORT|$SDH_API_PORT|g" \
         -e "s|\$SDH_LDAP_HOST|$SDH_LDAP_HOST|g" \
         -e "s|\$SDH_LDAP_PASSWORD|$SDH_LDAP_PASSWORD|g" \
         -e "s|\$SDH_RABBIT_HOST|$SDH_RABBIT_HOST|g" \
