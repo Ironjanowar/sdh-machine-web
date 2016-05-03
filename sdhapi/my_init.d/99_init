@@ -13,7 +13,8 @@ Update() {
     fi
 
     sed -i \
-        -e "s|\$SDH_API_HOST|$SDH_API_HOST:$SDH_API_PORT|g" \
+        -e "s|\$SDH_API_HOST|$SDH_API_HOST|g" \
+        -e "s|\$SDH_API_PATH|$SDH_API_PATH|g" \
         -e "s|\$SDH_API_PROTOCOL|$SDH_API_PROTOCOL|g"\
     /home/swagger.json
 

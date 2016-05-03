@@ -17,7 +17,7 @@
         "application/json"
     ],
     "host": "$SDH_API_HOST",
-    "basePath": "/",
+    "basePath": "$SDH_API_PATH",
     "schemes": [
         "$SDH_API_PROTOCOL"
     ],
@@ -256,7 +256,7 @@
                 }
             }
         },
-        "/projects/{pid}": {
+        "/projects/{pjid}": {
             "get": {
                 "x-swagger-router-controller": "Project",
                 "tags": [
@@ -266,7 +266,7 @@
                 "operationId": "projectInfo",
                 "parameters": [
                     {
-                        "name": "pid",
+                        "name": "pjid",
                         "in": "path",
                         "description": "Project id",
                         "required": true,
@@ -391,6 +391,36 @@
                 }
             }
         },
+        "/metricinfo/{id}": {
+            "get": {
+                "x-swagger-router-controller": "Metric",
+                "tags": [
+                    "Metric"
+                ],
+                "summary": "Metric Information",
+                "operationId": "metricInfo",
+                "parameters": [
+                      {
+                          "name": "id",
+                          "in": "path",
+                          "description": "Metric id",
+                          "required": true,
+                          "type": "string"
+                      }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Metric info.",
+                        "schema": {
+                            "$ref": "#/definitions/metricinfo"
+                        }
+                    },
+                    "404": {
+                        "description": "Metric not found"
+                    }
+                }
+            }
+        },
         "/metrics/": {
             "get": {
                 "x-swagger-router-controller": "Metric",
@@ -433,7 +463,37 @@
                 }
             }
         },
-        "/metrics/{mid}": {
+        "/tbdatainfo/{id}": {
+            "get": {
+                "x-swagger-router-controller": "TimeBasedData",
+                "tags": [
+                    "TimeBasedData"
+                ],
+                "summary": "View Information",
+                "operationId": "viewInfo",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Time Based Data id",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "View info.",
+                        "schema": {
+                            "$ref": "#/definitions/tbdinfo"
+                        }
+                    },
+                    "404": {
+                        "description": "View not found"
+                    }
+                }
+            }
+        },
+        "/metrics/{id}": {
             "get": {
                 "x-swagger-router-controller": "Metric",
                 "tags": [
@@ -443,7 +503,7 @@
                 "operationId": "getMetric",
                 "parameters": [
                     {
-                        "name": "mid",
+                        "name": "id",
                         "in": "path",
                         "description": "Metric id",
                         "required": true,
@@ -457,7 +517,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "pid",
+                        "name": "pjid",
                         "in": "query",
                         "description": "Project id",
                         "required": false,
@@ -537,7 +597,7 @@
                 }
             }
         },
-        "/tbdata/{tid}": {
+        "/tbdata/{id}": {
             "get": {
                 "x-swagger-router-controller": "TimeBasedData",
                 "tags": [
@@ -547,7 +607,7 @@
                 "operationId": "getTimeBasedData",
                 "parameters": [
                     {
-                        "name": "tid",
+                        "name": "id",
                         "in": "path",
                         "description": "Time Based Data id",
                         "required": true,
@@ -561,7 +621,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "pid",
+                        "name": "pjid",
                         "in": "query",
                         "description": "Project id",
                         "required": false,
@@ -623,7 +683,7 @@
         },
         "organizationinfo": {
             "properties": {
-                "organizationid": {
+                "oid": {
                     "type": "string",
                     "description": "Unique organization id"
                 },
@@ -639,7 +699,7 @@
         },
         "product": {
             "properties": {
-                "productid": {
+                "prid": {
                     "type": "string",
                     "description": "Unique Product identifier"
                 },
@@ -666,7 +726,7 @@
         },
         "productinfo": {
             "properties": {
-                "productid": {
+                "prid": {
                     "type": "string",
                     "description": "Unique Product identifier"
                 },
@@ -727,7 +787,7 @@
         },
         "project": {
             "properties": {
-                "projectid": {
+                "pjid": {
                     "type": "string",
                     "description": "Unique Project identifier"
                 },
@@ -754,7 +814,7 @@
         },
         "projectinfo": {
             "properties": {
-                "projectid": {
+                "pjid": {
                     "type": "string",
                     "description": "Unique Project identifier"
                 },
@@ -815,11 +875,11 @@
         },
         "repository": {
             "properties": {
-                "repositoryid": {
+                "rid": {
                     "type": "string",
                     "description": "Unique Repository identifier"
                 },
-                "projectid": {
+                "pjid": {
                     "type": "string",
                     "description": "Unique Project identifier"
                 },
@@ -858,11 +918,11 @@
         },
         "repositoryinfo": {
             "properties": {
-                "repositoryid": {
+                "rid": {
                     "type": "string",
                     "description": "Unique Repository identifier"
                 },
-                "projectid": {
+                "pjid": {
                     "type": "string",
                     "description": "Unique Project identifier"
                 },
@@ -933,7 +993,7 @@
         },
         "user": {
             "properties": {
-                "userid": {
+                "uid": {
                     "type": "string",
                     "description": "Unique user identifier"
                 },
@@ -953,7 +1013,7 @@
         },
         "userinfo": {
             "properties": {
-                "userid": {
+                "uid": {
                     "type": "string",
                     "description": "Unique user identifier"
                 },
@@ -1131,4 +1191,3 @@
         }
     }
 }
-
