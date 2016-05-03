@@ -16,8 +16,9 @@ sdhapi:
   environment:
     - USERPROFILE=/usr/lib/node_modules/sdh-api
     - SDH_API_HOST=
-    - SDH_API_PROTOCOL=http
-    - SDH_API_PORT=9002
+    - SDH_API_PATH=
+    - SDH_API_PROTOCOL=
+    - SDH_API_PORT=
     - SDH_LDAP_HOST=
     - SDH_LDAP_PASSWORD=
     - SDH_RABBIT_HOST=
@@ -42,11 +43,12 @@ phpmyadmin:
     - MYSQL_PASS=secret
     - MYSQL_ADDR=mysql
     - MYSQL_PORT=3306
+
   links:
     - mysql:mysql
 
-laravel:
-  hostname: laravel
+laravelweb:
+  hostname: laravelweb
   domainname: localdomain
   build: laravel
   environment:
@@ -54,12 +56,24 @@ laravel:
     - MYSQL_PASS=secret
     - MYSQL_ADDR=mysql
     - MYSQL_PORT=3306
-    - SDH_API_HOST=
-    - SDH_API_INTERNAL=http://sdhapi:8080
+    - SDH_API_HOST=https://WEB_HOST/sdhapi
+    - SDH_API_INTERNAL=http://sdhapi:8080/sdhapi
     - LARAVEL_DB=homestead
   links:
     - mysql:mysql
-    - sdhapi:sdhapi
+    - sdhapi:api
   ports:
     - "9000:80"
 
+nginx:
+  hostname: nginx
+  domainname: localdomain
+  build: nginx
+  links:
+    - sdhapi:sdhapi
+    - laravelweb:laravelweb
+  volumes:
+    - /home/admin-com/ssl:/opt/ssl
+  ports:
+    - "80:80"
+    - "443:443"
