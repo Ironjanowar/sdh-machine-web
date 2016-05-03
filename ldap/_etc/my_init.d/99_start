@@ -1,4 +1,4 @@
 #!/bin/bash
 
-ldapadd -D "cn=admin,dc=ldap,dc=smartdeveloperhub,dc=org" -w ldapsdh12345 -f /ldap.ldif
+ldapadd -c -D "cn=admin,dc=ldap,dc=smartdeveloperhub,dc=org" -w ldapsdh12345 -f /ldap.ldif
 
