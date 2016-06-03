@@ -12,23 +12,7 @@ Update() {
     	npm update
     fi
 
-    sed -i \
-        -e "s|\$SDH_API_HOST|$SDH_API_HOST|g" \
-        -e "s|\$SDH_API_PATH|$SDH_API_PATH|g" \
-        -e "s|\$SDH_API_PROTOCOL|$SDH_API_PROTOCOL|g"\
-    /home/swagger.json
-
-   sed -i \
-        -e "s|\$SDH_LDAP_HOST|$SDH_LDAP_HOST|g" \
-        -e "s|\$SDH_LDAP_PASSWORD|$SDH_LDAP_PASSWORD|g" \
-        -e "s|\$SDH_RABBIT_HOST|$SDH_RABBIT_HOST|g" \
-        -e "s|\$SDH_RABBIT_PORT|$SDH_RABBIT_PORT|g" \
-    /home/sdhconfig
-
     cd node_modules/$1
-    cp /home/swagger.json api/swagger.json
-    cp /home/sdhconfig sdhconfig
-
     node index.js &
     cd $ROOT
 }
