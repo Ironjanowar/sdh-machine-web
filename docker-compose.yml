@@ -36,11 +36,11 @@ sdhapi:
     - "9002:80"
 
 mysql:
-  image: mysql
+  build: mysql
   hostname: mysql
   domainname: localdomain
   environment:
-    - MYSQL_ROOT_PASSWORD=secret
+    - MYSQL_PASS=secret
 
 phpmyadmin:
   hostname: phpmyadmin
