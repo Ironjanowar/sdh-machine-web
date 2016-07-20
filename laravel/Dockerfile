@@ -1,4 +1,4 @@
-FROM phusion/baseimage
+FROM phusion/baseimage:0.9.14
 MAINTAINER Alejandro F. Carrera <alej4fc@gmail.com>
 
 # Exports
