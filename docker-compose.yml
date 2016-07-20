@@ -36,7 +36,7 @@ sdhapi:
     - "9002:80"
 
 mysql:
-  build: mysql
+  image: smartdeveloperhub/mysql
   hostname: mysql
   domainname: localdomain
   environment:
